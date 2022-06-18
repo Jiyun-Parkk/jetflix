@@ -1,11 +1,14 @@
 import { DefaultTheme } from "styled-components";
 
 export const theme: DefaultTheme = {
-	bgColor: "#ECE5C7",
-	boardColor: "#354259",
-	cardColor: "#CDC2AE",
-	titleColor: "#8D93AB",
-	highlightColor: "#455D7A",
-	highlightColor2: "#1F5F8B",
-	isDraggingColor: "#FFC478",
+	red: "#E51013",
+	black: {
+		veryDar: "#141414",
+		darker: "#181818",
+		lighter: "#2F2F2F",
+	},
+	white: {
+		lighter: "#fff",
+		darker: "#e5e5e5",
+	},
 };

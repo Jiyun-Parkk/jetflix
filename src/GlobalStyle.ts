@@ -12,7 +12,6 @@ ${reset}
 		width:100%;
 		height:100vh;
 		font-family:'Source Sans Pro', sans-serif;
-		background-color:${(props) => props.theme.bgColor};
 	}
 	a{
 		color:inherit;
