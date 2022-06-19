@@ -6,8 +6,6 @@ import Tv from "./Routes/Tv";
 import Search from "./Routes/Search";
 import Header from "./Header";
 
-const Wrapper = styled.div``;
-
 function App() {
 	return (
 		<>
@@ -15,7 +13,9 @@ function App() {
 			<BrowserRouter>
 				<Header />
 				<Routes>
-					<Route path="/" element={<Home />} />
+					<Route path="/*" element={<Home />}>
+						<Route path="movies/:movieId" element={<Home />} />
+					</Route>
 					<Route path="tv" element={<Tv />} />
 					<Route path="search" element={<Search />} />
 				</Routes>
