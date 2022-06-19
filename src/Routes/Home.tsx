@@ -88,8 +88,8 @@ const Overlay = styled(motion.div)`
 
 const BigMovie = styled(motion.div)`
 	position: fixed;
-	width: 80vw;
-	height: 80vh;
+	width: 50vw;
+	height: 90vh;
 	top: 50px;
 	left: 0;
 	right: 0;
@@ -100,9 +100,9 @@ const BigMovie = styled(motion.div)`
 `;
 
 const BigCover = styled.div`
-	background-size: cover;
+	background-size: 100% 100%;
 	width: 100%;
-	height: 50%;
+	height: 65%;
 `;
 const BigTitle = styled.h3`
 	position: relative;
