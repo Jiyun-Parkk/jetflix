@@ -1,7 +1,7 @@
 const API_KEY = "9617ae0d2cf3dd9e864493e4307477da";
 const BASE_PATH = "https://api.themoviedb.org";
 
-interface IMovie {
+export interface IMovie {
 	id: number;
 	backdrop_path: string;
 	poster_path: string;
