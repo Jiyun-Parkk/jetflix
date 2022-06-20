@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/jetflix/static/js/main.614c69bf.js",
+    "main.js": "/jetflix/static/js/main.8d7d98ce.js",
     "index.html": "/jetflix/index.html",
-    "main.614c69bf.js.map": "/jetflix/static/js/main.614c69bf.js.map"
+    "main.8d7d98ce.js.map": "/jetflix/static/js/main.8d7d98ce.js.map"
   },
   "entrypoints": [
-    "static/js/main.614c69bf.js"
+    "static/js/main.8d7d98ce.js"
   ]
 }
