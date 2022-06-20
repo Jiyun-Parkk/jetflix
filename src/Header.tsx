@@ -156,7 +156,7 @@ function Header() {
 				</Logo>
 				<Items>
 					<Item>
-						<Link to="/*">Home</Link>
+						<Link to="/">Home</Link>
 						{(homeMatch || movieMatch) && (
 							<Circle layoutId="circle" />
 						)}
