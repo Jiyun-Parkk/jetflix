@@ -9,6 +9,9 @@ export interface IMovie {
 	overview: string;
 }
 
+// top_rated
+// upcoming
+//latest
 export interface IGetMoviesResult {
 	dates: {
 		maximum: string;
@@ -19,8 +22,41 @@ export interface IGetMoviesResult {
 	total_pages: number;
 	total_results: number;
 }
-export function getMovies() {
+export interface IGetTvResult {
+	page: number;
+	results: IMovie[];
+	total_pages: number;
+	total_results: number;
+}
+
+export function getNowMovies() {
 	return fetch(`${BASE_PATH}/3/movie/now_playing?api_key=${API_KEY}`).then(
+		(response) => response.json()
+	);
+}
+export function getTopMovies() {
+	return fetch(`${BASE_PATH}/3/movie/top_rated?api_key=${API_KEY}`).then(
+		(response) => response.json()
+	);
+}
+export function getUpcomingMovies() {
+	return fetch(`${BASE_PATH}/3/movie/upcoming?api_key=${API_KEY}`).then(
+		(response) => response.json()
+	);
+}
+
+export function topRateTv() {
+	return fetch(`${BASE_PATH}/3/tv/top_rated?api_key=${API_KEY}`).then(
+		(response) => response.json()
+	);
+}
+export function airingTv() {
+	return fetch(`${BASE_PATH}/3/tv/airing_today?api_key=${API_KEY}`).then(
+		(response) => response.json()
+	);
+}
+export function popularTv() {
+	return fetch(`${BASE_PATH}/3/tv/popular?api_key=${API_KEY}`).then(
 		(response) => response.json()
 	);
 }

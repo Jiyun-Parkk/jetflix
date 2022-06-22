@@ -14,9 +14,12 @@ function App() {
 				<Header />
 				<Routes>
 					<Route path="/*" element={<Home />}>
-						<Route path="movies/:movieId" element={<Home />} />
+						<Route
+							path="movies/:rate/:movieId"
+							element={<Home />}
+						/>
 					</Route>
-					<Route path="tv" element={<Tv />} />
+					<Route path="tv/*" element={<Tv />} />
 					<Route path="search" element={<Search />} />
 				</Routes>
 			</BrowserRouter>

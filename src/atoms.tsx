@@ -14,3 +14,7 @@ export const IsLeaving = atom({
 	key: "leaving",
 	default: false,
 });
+export const MovieId = atom({
+	key: "movieId",
+	default: "",
+});

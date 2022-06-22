@@ -1,9 +1,14 @@
-import { useMatch, useNavigate, PathMatch } from "react-router-dom";
+import { useNavigate, PathMatch } from "react-router-dom";
 import { useQuery } from "react-query";
 import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
-import { getMovies, IGetMoviesResult } from "../api";
 import { makeImagePath } from "../utils";
+import {
+	getNowMovies,
+	getTopMovies,
+	getUpcomingMovies,
+	IGetMoviesResult,
+} from "../api";
 
 const Overlay = styled(motion.div)`
 	position: fixed;
@@ -45,17 +50,30 @@ const BigOverview = styled.p`
 	padding: 10px;
 	color: ${(props) => props.theme.white.lighter};
 `;
-
-function Modal() {
+interface IModalProps {
+	bigMovieMatch: PathMatch<string> | null;
+}
+function Modal({ bigMovieMatch }: IModalProps) {
 	const history = useNavigate();
-	const bigMovieMatch: PathMatch<string> | null =
-		useMatch("/movies/:movieId");
-	const { data, isLoading } = useQuery<IGetMoviesResult>(
-		["movies", "nowPlaying"],
-		getMovies
+	const onOverlayClick = () => history("/");
+	const getContent = ["now_playing", "top_rated", "upcoming"];
+	const { data: dataNow } = useQuery<IGetMoviesResult>(
+		["movies", getContent[0]],
+		getNowMovies
+	);
+	const { data: dataTop } = useQuery<IGetMoviesResult>(
+		["movies", getContent[1]],
+		getTopMovies
+	);
+	const { data: dataUpcoming } = useQuery<IGetMoviesResult>(
+		["movies", getContent[2]],
+		getUpcomingMovies
 	);
 
-	const onOverlayClick = () => history("/");
+	const getMovies = [dataNow, dataTop, dataUpcoming];
+	const index = getContent.indexOf(String(bigMovieMatch?.params.rate));
+	const data = getMovies[index];
+
 	const clickedMovie =
 		bigMovieMatch?.params.movieId &&
 		data?.results.find(
@@ -70,7 +88,9 @@ function Modal() {
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
 				/>
-				<BigMovie layoutId={bigMovieMatch?.params.movieId}>
+				<BigMovie
+					layoutId={`${bigMovieMatch?.params.content}+${bigMovieMatch?.params.rate}+${bigMovieMatch?.params.movieId}`}
+				>
 					{clickedMovie && (
 						<>
 							<BigCover
