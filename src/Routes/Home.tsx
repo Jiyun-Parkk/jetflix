@@ -13,7 +13,6 @@ import MakeSwiper from "../components/MakeSwiper";
 
 const Wrapper = styled.div`
 	background: #000;
-	padding-bottom: 200px;
 `;
 
 const Loader = styled.div`
