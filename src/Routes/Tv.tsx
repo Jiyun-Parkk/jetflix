@@ -30,7 +30,7 @@ function Tv() {
 		"/:content/:rate/:movieId"
 	);
 
-	const getContent = ["top_rate", "aring", "popular"];
+	const getContent = ["top_rated", "aring", "popular"];
 	const { data: dataTopRate, isLoading } = useQuery<IGetTvResult>(
 		["tv", getContent[0]],
 		topRateTv

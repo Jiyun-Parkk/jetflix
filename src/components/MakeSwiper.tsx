@@ -82,7 +82,7 @@ function MakeSwiper({ data, content, rate }: IContentProps) {
 			spaceBetween={40}
 			slidesPerView={6}
 		>
-			{data?.results.slice(1).map((movie, idx) => (
+			{data?.results.slice(1).map((movie) => (
 				<SwiperSlide key={movie.id}>
 					<motion.div
 						layoutId={`${content}+${rate}+${movie.id}`}
