@@ -18,3 +18,7 @@ export const MovieId = atom({
 	key: "movieId",
 	default: "",
 });
+export const SearchKey = atom({
+	key: "SearchKey",
+	default: "",
+});

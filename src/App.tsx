@@ -20,7 +20,10 @@ function App() {
 						/>
 					</Route>
 					<Route path="tv/*" element={<Tv />} />
-					<Route path="search" element={<Search />} />
+					<Route path="search" element={<Search />}>
+						<Route path="movieSearch" />
+						<Route path="tvSearch" />
+					</Route>
 				</Routes>
 			</BrowserRouter>
 		</>

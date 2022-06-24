@@ -9,9 +9,6 @@ export interface IMovie {
 	overview: string;
 }
 
-// top_rated
-// upcoming
-//latest
 export interface IGetMoviesResult {
 	dates: {
 		maximum: string;
@@ -59,4 +56,14 @@ export function popularTv() {
 	return fetch(`${BASE_PATH}/3/tv/popular?api_key=${API_KEY}`).then(
 		(response) => response.json()
 	);
+}
+export function searchMovie(searchWord: string | null) {
+	return fetch(
+		`${BASE_PATH}/3/search/movie?api_key=${API_KEY}&query=${searchWord}`
+	).then((response) => response.json());
+}
+export function searchTv(searchWord: string | null) {
+	return fetch(
+		`${BASE_PATH}/3/search/tv?api_key=${API_KEY}&query=${searchWord}`
+	).then((response) => response.json());
 }

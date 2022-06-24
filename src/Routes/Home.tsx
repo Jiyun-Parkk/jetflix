@@ -1,6 +1,5 @@
 import { useMatch, PathMatch } from "react-router-dom";
 import { useQuery } from "react-query";
-
 import {
 	getNowMovies,
 	getTopMovies,
