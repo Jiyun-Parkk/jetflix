@@ -4,12 +4,12 @@ import { useQuery } from "react-query";
 import { topRateTv, airingTv, popularTv, IGetTvResult } from "../api";
 import styled from "styled-components";
 import TopBanner from "../components/TopBanner";
-import ContentSlider from "../components/Slider";
 import Modal from "../components/ModalTv";
+import MakeSwiper from "../components/MakeSwiper";
 
 const Wrapper = styled.div`
 	background: #000;
-	padding-bottom: 200px;
+	padding-bottom: 100px;
 `;
 
 const Loader = styled.div`
@@ -18,7 +18,13 @@ const Loader = styled.div`
 	justify-content: center;
 	align-items: center;
 `;
-
+const SlideTitle = styled.h3`
+	position: relative;
+	top: -100px;
+	font-size: 30px;
+	padding: 20px;
+	padding-left: 35px;
+`;
 function Tv() {
 	const bigMovieMatch: PathMatch<string> | null = useMatch(
 		"/:content/:rate/:movieId"
@@ -46,19 +52,22 @@ function Tv() {
 			) : (
 				<>
 					<TopBanner data={dataPoplur} />
-
-					<div style={{ position: "relative", top: "-100px" }}>
-						{getContent.map((content, idx) => {
-							return (
-								<ContentSlider
+					{getContent.map((content, idx) => {
+						return (
+							<div key={idx}>
+								<SlideTitle>
+									{getContent[idx]
+										.replace("_", " ")
+										.toUpperCase()}
+								</SlideTitle>
+								<MakeSwiper
 									data={getMovies[idx]}
 									rate={content}
-									key={idx}
 									content="tv"
 								/>
-							);
-						})}
-					</div>
+							</div>
+						);
+					})}
 					{bigMovieMatch ? (
 						<Modal bigMovieMatch={bigMovieMatch} />
 					) : null}

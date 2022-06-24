@@ -1,7 +1,5 @@
 import { useMatch, PathMatch } from "react-router-dom";
 import { useQuery } from "react-query";
-import { useRecoilState } from "recoil";
-import { Index, IsLeaving, MovieId, windowSize } from "../atoms";
 
 import {
 	getNowMovies,
@@ -11,8 +9,8 @@ import {
 } from "../api";
 import styled from "styled-components";
 import TopBanner from "../components/TopBanner";
-import ContentSlider from "../components/Slider";
 import Modal from "../components/ModalMovie";
+import MakeSwiper from "../components/MakeSwiper";
 
 const Wrapper = styled.div`
 	background: #000;
@@ -24,6 +22,14 @@ const Loader = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+`;
+
+const SlideTitle = styled.h3`
+	position: relative;
+	top: -100px;
+	font-size: 30px;
+	padding: 20px;
+	padding-left: 35px;
 `;
 
 function Home() {
@@ -54,18 +60,22 @@ function Home() {
 				<>
 					<TopBanner data={dataNow} />
 
-					<div style={{ position: "relative", top: "-100px" }}>
-						{getContent.map((content, idx) => {
-							return (
-								<ContentSlider
+					{getContent.map((content, idx) => {
+						return (
+							<div key={idx}>
+								<SlideTitle>
+									{getContent[idx]
+										.replace("_", " ")
+										.toUpperCase()}
+								</SlideTitle>
+								<MakeSwiper
 									data={getMovies[idx]}
 									rate={content}
-									key={idx}
 									content="movies"
 								/>
-							);
-						})}
-					</div>
+							</div>
+						);
+					})}
 					{bigMovieMatch ? (
 						<Modal bigMovieMatch={bigMovieMatch} />
 					) : null}

@@ -7,6 +7,7 @@ import { topRateTv, airingTv, popularTv, IGetTvResult } from "../api";
 
 const Overlay = styled(motion.div)`
 	position: fixed;
+	z-index: 119;
 	top: 0;
 	width: 100%;
 	height: 100%;
@@ -16,6 +17,7 @@ const Overlay = styled(motion.div)`
 
 const BigMovie = styled(motion.div)`
 	position: fixed;
+	z-index: 120;
 	width: 50vw;
 	height: 90vh;
 	top: 50px;
