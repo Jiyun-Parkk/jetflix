@@ -25,10 +25,10 @@ const Loader = styled.div`
 
 const SlideTitle = styled.h3`
 	position: relative;
-	top: -100px;
 	font-size: 30px;
 	padding: 20px;
 	padding-left: 35px;
+	text-shadow: 5px 5px 2px rgba(255, 255, 255, 0.2);
 `;
 
 function Home() {
@@ -61,7 +61,10 @@ function Home() {
 
 					{getContent.map((content, idx) => {
 						return (
-							<div key={idx}>
+							<div
+								key={idx}
+								style={{ position: "relative", top: "-200px" }}
+							>
 								<SlideTitle>
 									{getContent[idx]
 										.replace("_", " ")

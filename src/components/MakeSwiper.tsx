@@ -27,20 +27,26 @@ const NaviBtn = styled.div`
 	cursor: pointer;
 `;
 
+const PosterBox = styled(motion.div)`
+	position: relative;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+`;
+
 interface ISwiperStyle {
 	width: string;
 	height: string;
-	top: string;
 	marginBottom: string;
 	overflow: string;
 }
 const SwiperStyle: ISwiperStyle = {
 	width: "95%",
-	height: "300px",
-	top: "-100px",
+	height: "350px",
 	marginBottom: "50px",
 	overflow: "visible",
 };
+
 interface IContentProps {
 	rate?: string;
 	content?: string;
@@ -84,23 +90,19 @@ function MakeSwiper({ data, content, rate }: IContentProps) {
 		>
 			{data?.results.slice(1).map((movie) => (
 				<SwiperSlide key={movie.id}>
-					<motion.div
+					<PosterBox
 						layoutId={`${content}+${rate}+${movie.id}`}
 						variants={BoxesVariants}
 						whileHover="hover"
 						onClick={() => onBoxClicked(movie.id)}
 						style={{
-							position: "relative",
-							width: "100%",
-							height: "100%",
 							background: `url(${makeImagePath(
 								movie.poster_path
 									? movie.poster_path
 									: movie.backdrop_path
 							)}) no-repeat center / 100% 100%`,
-							cursor: "pointer",
 						}}
-					></motion.div>
+					></PosterBox>
 				</SwiperSlide>
 			))}
 			<NaviBtn style={{ left: "-31px" }} ref={navigationPrevRef}>

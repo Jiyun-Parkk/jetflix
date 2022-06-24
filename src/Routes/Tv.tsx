@@ -9,7 +9,6 @@ import MakeSwiper from "../components/MakeSwiper";
 
 const Wrapper = styled.div`
 	background: #000;
-	padding-bottom: 100px;
 `;
 
 const Loader = styled.div`
@@ -20,10 +19,11 @@ const Loader = styled.div`
 `;
 const SlideTitle = styled.h3`
 	position: relative;
-	top: -100px;
+	/* top: -250px; */
 	font-size: 30px;
 	padding: 20px;
 	padding-left: 35px;
+	text-shadow: 5px 5px 2px rgba(255, 255, 255, 0.2);
 `;
 function Tv() {
 	const bigMovieMatch: PathMatch<string> | null = useMatch(
@@ -54,7 +54,10 @@ function Tv() {
 					<TopBanner data={dataPoplur} />
 					{getContent.map((content, idx) => {
 						return (
-							<div key={idx}>
+							<div
+								key={idx}
+								style={{ position: "relative", top: "-200px" }}
+							>
 								<SlideTitle>
 									{getContent[idx]
 										.replace("_", " ")
