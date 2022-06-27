@@ -5,6 +5,7 @@ import Home from "./Routes/Home";
 import Tv from "./Routes/Tv";
 import Search from "./Routes/Search";
 import Header from "./Header";
+import GetMovieList from "./components/GetMovieList";
 
 function App() {
 	return (
@@ -20,10 +21,7 @@ function App() {
 						/>
 					</Route>
 					<Route path="tv/*" element={<Tv />} />
-					<Route path="search" element={<Search />}>
-						<Route path="movieSearch" />
-						<Route path="tvSearch" />
-					</Route>
+					<Route path="search/*" element={<Search />} />
 				</Routes>
 			</BrowserRouter>
 		</>

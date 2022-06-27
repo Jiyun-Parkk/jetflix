@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { motion, useAnimation, useViewportScroll } from "framer-motion";
 import { Link, useMatch } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useRecoilState } from "recoil";
 
 const Nav = styled(motion.nav)`
 	display: flex;
@@ -139,9 +138,11 @@ function Header() {
 			}
 		});
 	}, [scrollY]);
+
 	const { register, handleSubmit } = useForm<IForm>();
 	const onValid = (data: IForm) => {
-		navigate(`/search?keyword=${data.keyword}`);
+		navigate(`/search/?keyword=${data.keyword}`);
+		window.location.reload();
 	};
 	return (
 		<Nav variants={navVariants} animate={navAnimation} initial="up">

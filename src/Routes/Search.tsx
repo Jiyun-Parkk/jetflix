@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useQuery } from "react-query";
 import styled from "styled-components";
-import { IGetMoviesResult, searchMovie, searchTv } from "../api";
-import { makeImagePath } from "../utils";
+import GetMovieList from "../components/GetMovieList";
+import GetTvList from "../components/GetTvList";
 
-const Loader = styled.div`
+export const Loader = styled.div`
 	height: 20vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 `;
-const BoxWrap = styled.div`
+export const BoxWrap = styled.div`
 	width: 95%;
 	margin: 0 auto;
 	margin-top: 200px;
@@ -20,10 +19,13 @@ const BoxWrap = styled.div`
 	grid-template-columns: repeat(6, 1fr);
 	gap: 20px;
 `;
-const Box = styled(motion.div)<{ bg: string }>`
+export const Box = styled(motion.div)<{ bg: string }>`
 	height: 380px;
-	background: url(${(props) => makeImagePath(props.bg)}) no-repeat center /
-		100% 100%;
+	background: ${(props) => props.bg};
+	color: #fff;
+	font-size: 20px;
+	padding: 10px;
+	line-height: 370px;
 `;
 const BtnBox = styled.div`
 	height: 80px;
@@ -55,59 +57,25 @@ function Search() {
 	const [isMovie, setIsMovie] = useState(true);
 	const keyword = new URLSearchParams(location.search).get("keyword");
 
-	const { data: searchMovieData, isLoading: isLoadingMovie } =
-		useQuery<IGetMoviesResult>(["movies", "searched"], () =>
-			searchMovie(keyword)
-		);
-	const { data: searchTDatav, isLoading: isLoadingTv } =
-		useQuery<IGetMoviesResult>(["tv", "searched"], () => searchTv(keyword));
-
-	const setContent = () => {
-		setIsMovie((prev) => !prev);
-	};
-
 	return (
 		<>
 			<BtnBox>
-				<SetMovieBtn isMovie={isMovie} onClick={setContent}>
+				<SetMovieBtn
+					isMovie={isMovie}
+					onClick={() => {
+						setIsMovie(true);
+					}}
+				>
 					MOVIE
 				</SetMovieBtn>
-				<SetTvBtn isMovie={isMovie} onClick={setContent}>
+				<SetTvBtn isMovie={isMovie} onClick={() => setIsMovie(false)}>
 					TV SHOW
 				</SetTvBtn>
 			</BtnBox>
 			{isMovie ? (
-				isLoadingMovie ? (
-					<Loader>Loading...</Loader>
-				) : (
-					<BoxWrap>
-						{searchMovieData?.results.map((movie, idx) => (
-							<Box
-								key={idx}
-								bg={
-									movie.poster_path
-										? movie.poster_path
-										: movie.backdrop_path
-								}
-							/>
-						))}
-					</BoxWrap>
-				)
-			) : isLoadingTv ? (
-				<Loader>Loading...</Loader>
+				<GetMovieList searchKey={keyword} />
 			) : (
-				<BoxWrap>
-					{searchTDatav?.results.map((tv, idx) => (
-						<Box
-							key={idx}
-							bg={
-								tv.poster_path
-									? tv.poster_path
-									: tv.backdrop_path
-							}
-						/>
-					))}
-				</BoxWrap>
+				<GetTvList searchKey={keyword} />
 			)}
 		</>
 	);
