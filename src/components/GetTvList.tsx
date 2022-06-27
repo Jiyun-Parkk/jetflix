@@ -11,7 +11,6 @@ function GetTvList({ searchKey }: IGetKey) {
 		useQuery<IGetMoviesResult>(["tv", "searched"], () =>
 			searchTv(searchKey)
 		);
-	console.log("tv");
 
 	return (
 		<BoxWrap>

@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import GetMovieList from "../components/GetMovieList";
 import GetTvList from "../components/GetTvList";
+import { useRecoilState } from "recoil";
+import { ShowKeyword } from "../atoms";
 
 export const Loader = styled.div`
 	height: 20vh;
@@ -56,6 +58,7 @@ function Search() {
 	const location = useLocation();
 	const [isMovie, setIsMovie] = useState(true);
 	const keyword = new URLSearchParams(location.search).get("keyword");
+	const [key, setKeyword] = useRecoilState(ShowKeyword);
 
 	return (
 		<>
@@ -73,9 +76,9 @@ function Search() {
 				</SetTvBtn>
 			</BtnBox>
 			{isMovie ? (
-				<GetMovieList searchKey={keyword} />
+				<GetMovieList searchKey={key ? key : keyword} />
 			) : (
-				<GetTvList searchKey={keyword} />
+				<GetTvList searchKey={key ? key : keyword} />
 			)}
 		</>
 	);

@@ -1,4 +1,4 @@
-import { atom, selector } from "recoil";
+import { atom } from "recoil";
 
 export const windowSize = atom({
 	key: "windowSize",
@@ -18,7 +18,8 @@ export const MovieId = atom({
 	key: "movieId",
 	default: "",
 });
-export const SearchKey = atom({
-	key: "SearchKey",
+
+export const ShowKeyword = atom({
+	key: "showKey",
 	default: "",
 });
