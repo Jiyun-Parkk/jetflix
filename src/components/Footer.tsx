@@ -5,7 +5,6 @@ const FoooterBox = styled.footer`
 	width: 100%;
 	height: 120px;
 	padding: 20px;
-	background-color: ${(props) => props.theme.black.veryDar};
 `;
 const FooterDetail = styled.div`
 	width: 180px;
