@@ -17,7 +17,7 @@ const NaviBtn = styled.div`
 	height: 70px;
 	position: absolute;
 	top: 50%;
-	z-index: 20;
+	z-index: 150;
 	transform: translateY(-50%);
 	line-height: 85px;
 	font-size: 50px;
@@ -32,6 +32,7 @@ const PosterBox = styled(motion.div)`
 	width: 100%;
 	height: 100%;
 	cursor: pointer;
+	border-radius: 20px;
 `;
 
 interface ISwiperStyle {
@@ -89,7 +90,10 @@ function MakeSwiper({ data, content, rate }: IContentProps) {
 			slidesPerView={6}
 		>
 			{data?.results.slice(1).map((movie) => (
-				<SwiperSlide key={movie.id}>
+				<SwiperSlide
+					key={movie.id}
+					style={{ width: "250px", height: "350px" }}
+				>
 					<PosterBox
 						layoutId={`${content}+${rate}+${movie.id}`}
 						variants={BoxesVariants}

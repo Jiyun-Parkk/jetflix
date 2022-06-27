@@ -24,34 +24,51 @@ const BigMovie = styled(motion.div)`
 	position: fixed;
 	z-index: 120;
 	width: 50vw;
-	height: 90vh;
-	top: 50px;
+	height: auto;
+	top: 40px;
 	left: 0;
 	right: 0;
 	margin: 0 auto;
 	background-color: ${(props) => props.theme.black.lighter};
 	border-radius: 20px;
-	overflow: hidden;
 `;
 
 const BigCover = styled.div`
 	background-size: 100% 100%;
 	width: 100%;
-	height: 65%;
+	height: 500px;
+	border-radius: 20px 20px 0 0;
 `;
+
 const BigTitle = styled.h3`
 	position: relative;
 	top: -60px;
 	color: ${(props) => props.theme.white.lighter};
-	text-align: center;
+	text-align: left;
 	font-size: 30px;
 	margin: 10px 0;
+	padding-left: 20px;
 `;
 
-const BigOverview = styled.p`
+const BigOverview = styled.div`
+	width: 70%;
+	margin: 0 auto;
 	padding: 10px;
 	color: ${(props) => props.theme.white.lighter};
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	margin-bottom: 30px;
 `;
+const DetailBox = styled.div`
+	margin-bottom: 20px;
+`;
+const Detail = styled.div``;
+const DetailTitle = styled.span`
+	font-size: 20px;
+	font-weight: 600;
+	color: #cdc2ae;
+`;
+
 interface IModalProps {
 	bigMovieMatch: PathMatch<string> | null;
 }
@@ -102,8 +119,35 @@ function Modal({ bigMovieMatch }: IModalProps) {
 									)})`,
 								}}
 							/>
-							<BigTitle>{clickedMovie.title}</BigTitle>
-							<BigOverview>{clickedMovie.overview}</BigOverview>
+							<BigTitle>Title: {clickedMovie.title}</BigTitle>
+							<BigOverview>
+								<div>
+									<DetailTitle>Overview</DetailTitle>
+									<Detail style={{ marginTop: "20px" }}>
+										{clickedMovie.overview}
+									</Detail>
+								</div>
+								<div style={{ margin: "0 auto" }}>
+									<DetailBox>
+										<DetailTitle>Release Date</DetailTitle>
+										<Detail>
+											{clickedMovie.release_date}
+										</Detail>
+									</DetailBox>
+									<DetailBox>
+										<DetailTitle>Vote Average</DetailTitle>
+										<Detail>
+											★ {clickedMovie.vote_average}
+										</Detail>
+									</DetailBox>
+									<DetailBox>
+										<DetailTitle>Vote Count </DetailTitle>
+										<Detail>
+											{clickedMovie.vote_count}
+										</Detail>
+									</DetailBox>
+								</div>
+							</BigOverview>
 						</>
 					)}
 				</BigMovie>

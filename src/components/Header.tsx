@@ -5,7 +5,7 @@ import { motion, useAnimation, useViewportScroll } from "framer-motion";
 import { Link, useMatch } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
-import { ShowKeyword } from "./atoms";
+import { ShowKeyword } from "../atoms";
 
 const Nav = styled(motion.nav)`
 	display: flex;

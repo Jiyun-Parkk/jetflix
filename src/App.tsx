@@ -1,9 +1,10 @@
 import GlobalStyle from "./GlobalStyle";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Home from "./Routes/Home";
 import Tv from "./Routes/Tv";
 import Search from "./Routes/Search";
-import Header from "./Header";
 import { Helmet } from "react-helmet";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
 					<Route path="tv/*" element={<Tv />} />
 					<Route path="search" element={<Search />} />
 				</Routes>
+				<Footer />
 			</BrowserRouter>
 		</>
 	);
