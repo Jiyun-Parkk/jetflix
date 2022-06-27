@@ -6,6 +6,7 @@ import { Link, useMatch } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { ShowKeyword } from "../atoms";
+import { AiFillDatabase } from "react-icons/ai";
 
 const Nav = styled(motion.nav)`
 	display: flex;
@@ -132,6 +133,12 @@ function Header() {
 		}
 		setSearchOpen((prev) => !prev);
 	};
+	const closeSearch = () => {
+		if (searchOpen) {
+			inputAnimation.start({ scaleX: 0 });
+			setSearchOpen(false);
+		}
+	};
 	useEffect(() => {
 		scrollY.onChange(() => {
 			if (scrollY.get() > 80) {
@@ -142,11 +149,12 @@ function Header() {
 		});
 	}, [scrollY]);
 
-	const { register, handleSubmit } = useForm<IForm>();
+	const { register, handleSubmit, setValue } = useForm<IForm>();
 	const [key, setKeyword] = useRecoilState(ShowKeyword);
 	const onValid = (data: IForm) => {
 		navigate(`/search?keyword=${data.keyword}`);
 		setKeyword((prev) => data.keyword);
+		setValue("keyword", "");
 	};
 	return (
 		<Nav variants={navVariants} animate={navAnimation} initial="up">
@@ -167,13 +175,17 @@ function Header() {
 
 				<Items>
 					<Item>
-						<Link to="/">Home</Link>
+						<Link to="/" onClick={closeSearch}>
+							Home
+						</Link>
 						{(homeMatch || movieMatch) && (
 							<Circle layoutId="circle" />
 						)}
 					</Item>
 					<Item>
-						<Link to="tv">Tv Shows</Link>
+						<Link to="tv" onClick={closeSearch}>
+							Tv Shows
+						</Link>
 						{tvMatch && <Circle layoutId="circle" />}
 					</Item>
 				</Items>
