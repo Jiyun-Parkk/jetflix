@@ -1,6 +1,5 @@
 import { useMatch, PathMatch } from "react-router-dom";
 import { useQuery } from "react-query";
-
 import { topRateTv, airingTv, popularTv, IGetTvResult } from "../api";
 import styled from "styled-components";
 import TopBanner from "../components/TopBanner";
@@ -30,7 +29,7 @@ function Tv() {
 		"/:content/:rate/:movieId"
 	);
 
-	const getContent = ["top_rated", "aring", "popular"];
+	const getContent = ["top_rate", "aring", "popular"];
 	const { data: dataTopRate, isLoading } = useQuery<IGetTvResult>(
 		["tv", getContent[0]],
 		topRateTv
