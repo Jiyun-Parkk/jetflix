@@ -60,6 +60,7 @@ function Search() {
 	const [isMovie, setIsMovie] = useState(true);
 	const keyword = new URLSearchParams(location.search).get("keyword");
 	const [key, setKeyword] = useRecoilState(ShowKeyword);
+	console.log(key);
 
 	return (
 		<>

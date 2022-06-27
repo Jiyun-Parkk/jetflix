@@ -1,15 +1,21 @@
+import React, { memo } from "react";
 import { IGetMoviesResult, searchTv } from "../api";
 import { makeImagePath } from "../utils";
 import { BoxWrap, Box, Loader } from "../Routes/Search";
 import { useQuery } from "react-query";
+
 interface IGetKey {
 	searchKey: string | null;
 }
 
 function GetTvList({ searchKey }: IGetKey) {
 	const { data: searchTDatav, isLoading: isLoadingTv } =
-		useQuery<IGetMoviesResult>(["tv", "searched"], () =>
-			searchTv(searchKey)
+		useQuery<IGetMoviesResult>(
+			["tv", "searched"],
+			() => searchTv(searchKey),
+			{
+				refetchInterval: 1000,
+			}
 		);
 
 	return (

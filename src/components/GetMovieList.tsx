@@ -1,16 +1,20 @@
-import { IGetMoviesResult, searchMovie, IGetTvResult } from "../api";
+import React, { memo } from "react";
+import { searchMovie, IGetTvResult } from "../api";
 import { makeImagePath } from "../utils";
 import { BoxWrap, Box, Loader } from "../Routes/Search";
 import { useQuery } from "react-query";
-import { useLocation } from "react-router-dom";
 
 interface IGetKey {
 	searchKey: string | null;
 }
 function GetMovieList({ searchKey }: IGetKey) {
 	const { data: searchMovieData, isLoading: isLoadingMovie } =
-		useQuery<IGetTvResult>(["movies", "searched"], () =>
-			searchMovie(searchKey)
+		useQuery<IGetTvResult>(
+			["movies", "searched"],
+			() => searchMovie(searchKey),
+			{
+				refetchInterval: 500,
+			}
 		);
 
 	return (
@@ -44,4 +48,4 @@ function GetMovieList({ searchKey }: IGetKey) {
 	);
 }
 
-export default GetMovieList;
+export default React.memo(GetMovieList);
