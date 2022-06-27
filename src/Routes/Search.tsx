@@ -20,6 +20,7 @@ export const BoxWrap = styled.div`
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
 	gap: 20px;
+	padding-bottom: 150px;
 `;
 export const Box = styled(motion.div)<{ bg: string }>`
 	height: 380px;
