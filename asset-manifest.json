@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/jetflix/static/css/main.445d23f1.css",
-    "main.js": "/jetflix/static/js/main.8bb1619d.js",
+    "main.js": "/jetflix/static/js/main.b8b1ace8.js",
     "index.html": "/jetflix/index.html",
     "main.445d23f1.css.map": "/jetflix/static/css/main.445d23f1.css.map",
-    "main.8bb1619d.js.map": "/jetflix/static/js/main.8bb1619d.js.map"
+    "main.b8b1ace8.js.map": "/jetflix/static/js/main.b8b1ace8.js.map"
   },
   "entrypoints": [
     "static/css/main.445d23f1.css",
-    "static/js/main.8bb1619d.js"
+    "static/js/main.b8b1ace8.js"
   ]
 }
