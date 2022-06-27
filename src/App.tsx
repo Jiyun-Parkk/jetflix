@@ -1,15 +1,17 @@
-import styled from "styled-components";
 import GlobalStyle from "./GlobalStyle";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Routes/Home";
 import Tv from "./Routes/Tv";
 import Search from "./Routes/Search";
 import Header from "./Header";
-import GetMovieList from "./components/GetMovieList";
+import { Helmet } from "react-helmet";
 
 function App() {
 	return (
 		<>
+			<Helmet>
+				<title>JETFLIX</title>
+			</Helmet>
 			<GlobalStyle />
 			<BrowserRouter basename={process.env.PUBLIC_URL}>
 				<Header />
