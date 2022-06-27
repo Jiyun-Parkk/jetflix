@@ -14,7 +14,7 @@ function GetTvList({ searchKey }: IGetKey) {
 			["tv", "searched"],
 			() => searchTv(searchKey),
 			{
-				refetchInterval: 1000,
+				refetchInterval: 100,
 			}
 		);
 

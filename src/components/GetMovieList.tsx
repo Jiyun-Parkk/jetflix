@@ -13,7 +13,7 @@ function GetMovieList({ searchKey }: IGetKey) {
 			["movies", "searched"],
 			() => searchMovie(searchKey),
 			{
-				refetchInterval: 500,
+				refetchInterval: 100,
 			}
 		);
 
